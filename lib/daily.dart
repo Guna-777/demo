@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import './db.dart';
 import 'cl.dart';
+import 'package:toast/toast.dart';
 enum SingingCharacter { one,two }
 enum SingingCharacter1 {one1,two1}
 String ans1='Good',ans2a='Oil leakage',ans2b='Speed reduction',ans2c='Sound pollution',ans2d='Stops working in between',ans3='above are the issues' ;
@@ -340,6 +341,7 @@ class _DailyState extends State<Daily> {
                           ),
                         ),
                         onPressed: () {
+                          Toast.show("Saved", context, duration: Toast.LENGTH_SHORT, gravity:  Toast.BOTTOM);
                           ChecklistDatabaseProvider.db.insertChecklist(new Checklist(
                             name:'CNC Lathe machine',
                             ans1: ans1,

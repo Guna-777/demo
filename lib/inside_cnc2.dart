@@ -40,6 +40,14 @@ class _Inside2State extends State<Inside2> {
             child: Column(
               children: <Widget>[
                 Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Text('Exhaust Fan',style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 22.0,
+                    color: Colors.white,),
+                  ),
+                ),
+                Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Container(
                     decoration: new BoxDecoration(

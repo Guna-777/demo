@@ -5,7 +5,8 @@ import './inside_cnc2.dart';
 import './history.dart';
 
 void main() => runApp(MyApp());
-
+String search_ans=null;
+var _controller = TextEditingController();
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -42,13 +43,46 @@ class _MyHomePageState extends State<MyHomePage> {
                         elevation: 10.0,
                         borderRadius: BorderRadius.circular(25.0),
                         child: TextFormField(
+                          controller: _controller,
                           decoration: InputDecoration(
+                              suffixIcon: IconButton(
+                                onPressed: () => _controller.clear(),
+                                icon: Icon(Icons.clear,color: Colors.grey),
+                              ),
                               border: InputBorder.none,
                               prefixIcon: Icon(Icons.search, color: Colors.grey),
                               contentPadding:
                                   EdgeInsets.only(left: 15.0, top: 15.0),
                               hintText: 'Search for tools',
-                              hintStyle: TextStyle(color: Colors.grey)),
+                              hintStyle: TextStyle(color: Colors.grey)
+                          ),
+                          onChanged: (String text)
+                          {
+                            setState(() {
+                              search_ans=text;
+                              search_ans=search_ans.toLowerCase();
+                              if((search_ans=='cnc lathe machine')|(search_ans=='cnc')|(search_ans=='cnc machine')|(search_ans=='cncmachine')|(search_ans=='lathe')|(search_ans=='cnclathe')|(search_ans=='cnc lathe'))
+                              {
+                                //search_ans=null;
+                                Navigator.of(context).push(
+                                  MaterialPageRoute<Null>(builder: (BuildContext context) {
+                                    return new Inside1();
+                                  },
+                                  ),
+                                );
+                              }
+                              else if((search_ans=='exhaust fan')|(search_ans=='exhaust')|(search_ans=='exhaustfan')|(search_ans=='fan'))
+                              {
+                                //search_ans=null;
+                                Navigator.of(context).push(
+                                  MaterialPageRoute<Null>(builder: (BuildContext context) {
+                                    return new Inside2();
+                                  },
+                                  ),
+                                );
+                              }
+                            });
+                          },
                         ),
                       ),
                     ),

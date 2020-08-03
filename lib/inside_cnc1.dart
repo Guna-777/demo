@@ -38,22 +38,19 @@ class _Inside1State extends State<Inside1> {
                 icon: new Icon(Icons.arrow_back_ios, color: Colors.white),
                 onPressed: () => Navigator.of(context).pop(),
               ),
-
-//            flexibleSpace: Container(
-//              decoration: BoxDecoration(
-//                  gradient: LinearGradient(
-//                      begin: Alignment.topLeft,
-//                      end: Alignment.bottomRight,
-//                      colors: <Color>[
-//                        Color(0xFF545454),
-//                        Color(0xFF545454),
-//                      ])),
-//            ),
             ),
           ),
           body: SingleChildScrollView(
             child: Column(
               children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Text('CNC Lathe Machine',style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 22.0,
+                    color: Colors.white,),
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Container(
