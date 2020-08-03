@@ -29,21 +29,11 @@ class _Inside2State extends State<Inside2> {
                   fontSize: 24,
                 ),
               ),
-              centerTitle: true,
+//              centerTitle: true,
               leading: new IconButton(
                 icon: new Icon(Icons.arrow_back_ios, color: Colors.white),
                 onPressed: () => Navigator.of(context).pop(),
               ),
-//            flexibleSpace: Container(
-//              decoration: BoxDecoration(
-//                  gradient: LinearGradient(
-//                      begin: Alignment.topLeft,
-//                      end: Alignment.bottomRight,
-//                      colors: <Color>[
-//                        Color(0xFF545454),
-//                        Color(0xFF545454),
-//                      ])),
-//            ),
             ),
           ),
           body: SingleChildScrollView(
@@ -113,7 +103,7 @@ class _Inside2State extends State<Inside2> {
                           onTap: () {
                             Navigator.of(context).push(
                                 MaterialPageRoute<Null>(builder: (BuildContext context) {
-                                  return new Daily();
+                                  return new Daily(true);
                                 }));
                           },
                           title: Text(

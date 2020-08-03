@@ -1,7 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import './db.dart';
+import 'cl.dart';
+enum SingingCharacter { one,two }
+enum SingingCharacter1 {one1,two1}
+String ans1='Good',ans2a='Oil leakage',ans2b='Speed reduction',ans2c='Sound pollution',ans2d='Stops working in between',ans3='above are the issues' ;
 
 class Daily extends StatefulWidget {
+  final bool edit;
+  final Checklist checklist;
+  Daily(this.edit, {this.checklist})
+      : assert(edit == true || checklist == null);
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -10,13 +19,16 @@ class Daily extends StatefulWidget {
 }
 
 class _DailyState extends State<Daily> {
-  @override
-  String radioItem = '';
-
+  final _formKey = GlobalKey<FormState>();
+  SingingCharacter _character = SingingCharacter.one;
+  SingingCharacter1 _character1= SingingCharacter1.one1;
+  int flag,flag1;
   bool oilVal = false;
   bool spdVal = false;
   bool sndVal = false;
   bool stpVal = false;
+  @override
+  String radioItem = '';
 
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -40,21 +52,11 @@ class _DailyState extends State<Daily> {
                   fontSize: 24,
                 ),
               ),
-              centerTitle: true,
+//              centerTitle: true,
               leading: new IconButton(
                 icon: new Icon(Icons.arrow_back_ios, color: Colors.white),
                 onPressed: () => Navigator.of(context).pop(),
               ),
-//            flexibleSpace: Container(
-//              decoration: BoxDecoration(
-//                  gradient: LinearGradient(
-//                      begin: Alignment.topLeft,
-//                      end: Alignment.bottomRight,
-//                      colors: <Color>[
-//                        Color(0xFF545454),
-//                        Color(0xFF545454),
-//                      ])),
-//            ),
             ),
           ),
           body: SingleChildScrollView(
@@ -110,6 +112,7 @@ class _DailyState extends State<Daily> {
                           onChanged: (val) {
                             setState(() {
                               radioItem = val;
+                              ans1='Good';
                             });
                           },
                         ),
@@ -127,6 +130,7 @@ class _DailyState extends State<Daily> {
                           onChanged: (val) {
                             setState(() {
                               radioItem = val;
+                              ans1='Bad';
                             });
                           },
                         ),
@@ -144,6 +148,7 @@ class _DailyState extends State<Daily> {
                           onChanged: (val) {
                             setState(() {
                               radioItem = val;
+                              ans1='Moderate';
                             });
                           },
                         ),
@@ -181,6 +186,7 @@ class _DailyState extends State<Daily> {
                               onChanged: (bool value) {
                                 setState(() {
                                   oilVal = value;
+                                  ans2a="Oil leakage";
                                 });
                               },
                             ),
@@ -204,6 +210,7 @@ class _DailyState extends State<Daily> {
                               onChanged: (bool value) {
                                 setState(() {
                                   spdVal = value;
+                                  ans2b="Speed reduction";
                                 });
                               },
                             ),
@@ -227,6 +234,7 @@ class _DailyState extends State<Daily> {
                               onChanged: (bool value) {
                                 setState(() {
                                   sndVal = value;
+                                  ans2c="Sound pollution";
                                 });
                               },
                             ),
@@ -250,10 +258,11 @@ class _DailyState extends State<Daily> {
                               onChanged: (bool value) {
                                 setState(() {
                                   stpVal = value;
+                                  ans2d="Stops working in between";
                                 });
                               },
                             ),
-                            Text("Stops working while working",
+                            Text("Stops working in between",
                               textAlign: TextAlign.left,
                               style: TextStyle(
 //                                fontWeight: FontWeight.bold,
@@ -307,6 +316,45 @@ class _DailyState extends State<Daily> {
                     ),
                   ),
                 ),
+                SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  padding: EdgeInsets.only(left:25.0,right:25.0,top:15.0,bottom:15.0),
+                  //width: screenWidth/2,
+                  color:Colors.grey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      FlatButton(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(0.0)
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: Text('SAVE',
+                            style:TextStyle(
+                              fontSize:20.0,
+                              color:Colors.white,
+                            ),
+                          ),
+                        ),
+                        onPressed: () {
+                          ChecklistDatabaseProvider.db.insertChecklist(new Checklist(
+                            name:'CNC Lathe machine',
+                            ans1: ans1,
+                            ans2a: ans2a,
+                            ans2b: ans2b,
+                            ans2c: ans2c,
+                            ans2d: ans2d,
+                            ans3:ans3,
+                          ));
+                        },
+
+                      ),
+                    ],
+                  ),
+                )
               ],
             ),
           ),
