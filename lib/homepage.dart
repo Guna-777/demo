@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import './inside_cnc1.dart';
 import './inside_cnc2.dart';
 
+//Amazing UI
 const MaterialColor grey = const MaterialColor(
   0xFF737373,
   const<int, Color>{
