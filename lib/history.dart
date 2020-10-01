@@ -4,7 +4,7 @@ import './daily.dart';
 import './cl.dart';
 import 'dart:async';
 import 'package:sqflite/sqflite.dart';
-
+//this page enable to add data base to the project
 int tvalue = 0;
 int flag ;
 bool toggleValue;
